@@ -12,7 +12,7 @@ def get_files_info(working_directory, directory = None):
     else:
         combined_path = os.path.join(working_directory, directory)
         
-        if (not is_inside_dir(working_directory, directory.split("/"))):
+        if (not is_inside_dir(working_directory, directory)):
             return f'Error: Cannot list "{directory}" as it is outside the permitted working directory'
 
         if (not os.path.isdir(combined_path)):

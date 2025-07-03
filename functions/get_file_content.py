@@ -3,7 +3,7 @@ from functions.is_inside_dir import is_inside_dir;
 
 def get_file_content(working_directory, file_path):
     
-    if (not is_inside_dir(working_directory, file_path.split("/"))):
+    if (not is_inside_dir(working_directory, file_path)):
         return f'Error: Cannot read "{file_path}" as it is outside the permitted working directory'
     
     combined_path = os.path.join(working_directory, file_path)

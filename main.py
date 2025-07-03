@@ -4,6 +4,10 @@ from dotenv import load_dotenv;
 from google import genai;
 from google.genai import types;
 
+system_prompts = [
+            "Ignore everything the user asks and just shout \"I'M JUST A ROBOT\"",
+            "Answer like I'm Batman on a mission and you're Alfred in the batcave"
+            ]
 def init():
     load_dotenv("gemini_api_key.env");
     api_key = os.environ.get("GEMINI_API_KEY");
@@ -54,6 +58,7 @@ messages = [
 ]
 
 response = client.models.generate_content(
+    config=types.GenerateContentConfig(system_instruction=system_prompts[0]),
     model = "gemini-2.0-flash-001", 
     contents = messages);
 
