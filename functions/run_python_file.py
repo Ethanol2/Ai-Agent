@@ -1,6 +1,7 @@
 import os;
 import subprocess;
 from functions.is_inside_dir import is_inside_dir;
+from google.genai import types;
 
 def run_python_file(working_directory, file_path):
 
@@ -33,3 +34,17 @@ def run_python_file(working_directory, file_path):
         output.append("No output produced")
     
     return tuple(output)
+
+schema_run_python_file = types.FunctionDeclaration(
+    name="run_python_file",
+    description="Runs the file in file_path using python3. Assuming the file exists, is within the working directory and has a .py extension",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="The path to the file. This must be a valid path within the working directory. The file must have a .py extension",
+            ),
+        },
+    ),
+)

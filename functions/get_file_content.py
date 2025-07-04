@@ -1,5 +1,6 @@
 import os;
 from functions.is_inside_dir import is_inside_dir;
+from google.genai import types;
 
 def get_file_content(working_directory, file_path):
     
@@ -22,3 +23,17 @@ def get_file_content(working_directory, file_path):
         return f"Error: {e}\nTraceback: {e.with_traceback}"
     
     return file_contents;
+
+schema_get_file_content = types.FunctionDeclaration(
+    name="get_file_content",
+    description="Returns the contents of a file, with a max char limit of 10000. Assuming the file exists and is within the working directory",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="The path to the file. This must be a valid path within the working directory",
+            ),
+        },
+    ),
+)

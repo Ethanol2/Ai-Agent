@@ -1,4 +1,4 @@
-# main.py
+print(3 + 7 * 2)  # main.py
 
 import sys
 from pkg.calculator import Calculator
